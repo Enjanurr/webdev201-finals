@@ -38,7 +38,7 @@ body {
     @apply text-[70px] xl:text-[150px] leading-[1.1] font-semibold;
   }
   .h2 {
-    @apply text-[56px] xl:text-[8px] leading-[1.2] font-bold;
+    @apply text-[56px] xl:text-[70px] leading-[1.2] font-bold;
   }
   .lead {
     @apply text-lg;
@@ -46,4 +46,8 @@ body {
   .btn {
     @apply min-w-[156px] h-[54px] px-6 bg-accent hover:bg-accent-hover text-primary text-[13px] uppercase font-semibold tracking-[.15em] transition-all;
   }
+}
+.swiper-button-next::after,
+.swiper-button-prev::after{
+  @apply text-primary !text-[2rem];
 }

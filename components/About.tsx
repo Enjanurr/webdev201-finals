@@ -1,11 +1,11 @@
-/*'use client';
+'use client';
 import React from 'react';
 import { useRef, useLayoutEffect } from 'react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import Image from 'next/image';
 import Badge from './Badge';
-
+import Separator from './Separator';
 const data = [
   {
     imgSrc: '/assets/about/photo-1.jpg',
@@ -30,10 +30,36 @@ const data = [
 const About = () => {
   const scrollableSectionRef = useRef(null);
   const scrollTriggerRef = useRef(null);
+
+  useLayoutEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    const animation = gsap.fromTo(
+      scrollableSectionRef.current,
+      { translateX: 0 },
+      {
+        translateX: '-200vw',
+        ease: 'none',
+        duration: 1,
+        scrollTrigger: {
+          trigger: scrollTriggerRef.current,
+          start: 'top top',
+          end: '1800vw top',
+          scrub: 0.6,
+          pin: true,
+        },
+      }
+    );
+    return () => {
+      animation.kill();
+    };
+  }, []);
   return (
     <section className="overflow-hidden bg-primary">
       <div ref={scrollTriggerRef}>
-        <div ref={scrollableSectionRef}>
+        <div
+          ref={scrollableSectionRef}
+          className="h-screen w-[300vw] flex relative"
+        >
           {data.map((item, index) => {
             return (
               <div
@@ -42,13 +68,36 @@ const About = () => {
               >
                 <div className="container mx-auto">
                   <div className="flex gap-[30px] relative">
-                    <div className="flex-1 flex-col justify-center items-center">
+                    <div className="flex-1 flex flex-col justify-center items-center">
                       <Badge containerStyles="w-[180px] h-[180px]" />
-                      <div>
-                        <h2 className='h2 text-white mb-4'>{item.title}</h2>
+                      <div className="max-w-[560px] text-center">
+                        <h2 className="h2 text-white mb-4">
+                          <span className="mr-4">
+                            {item.title.split(' ')[0]}
+                          </span>
+                          <span className="text-accent">
+                            {item.title.split(' ')[1]}
+                          </span>
+                        </h2>
+                        <div className="mb-8">
+                          <Separator />
+                        </div>
+                        <p className="leading-relaxed mb-14 px-8 xl:px-0">
+                          {item.description}
+                        </p>
+                        <button className="btn">See more</button>
                       </div>
                     </div>
-                    <div className='hidden xl:flex flex-1 w-full h-[70vh] relative'>image</div>
+                    <div className="hidden xl:flex flex-1 w-full h-[70vh] relative">
+                      <Image
+                        src={item.imgSrc}
+                        fill
+                        className="object-cover"
+                        quality={100}
+                        priority
+                        alt=""
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -61,12 +110,3 @@ const About = () => {
 };
 
 export default About;
-*/
-
-import React from 'react'
-
-const About = () => {
-  return <h1>hello world</h1>
-}
-
-export default About
