@@ -3,9 +3,12 @@ import React, { useEffect } from 'react';
 import Hero from '@/components/Hero';
 import Explore from '@/components/Explore';
 import About from '@/components/About';
-import Menu from '@/components/Menu';
-import Testimonials from '@/components/Testimonials';
-
+import Menu from '@/components/Book';
+import Book from '@/components/Book';
+import Resume from '@/components/Resume';
+import AboutUs from '@/components/Resume';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 const Home = () => {
   useEffect(() => {
@@ -15,16 +18,27 @@ const Home = () => {
     };
     loadLocomotiveScroll();
   }, []);
+
+  
   return (
     <div className="h-full overflow-x-hidden">
-      <Hero />
-      <Explore />
-      <About />
-      <Menu />
-      <Testimonials />
-      <div className="h-[4800px]"></div>
+      <Header />
+    <div>
+    <Hero />
+    </div>
+      {/*  <Explore /> */}
+    <div id="Book">
+    <Book />
+    </div>
+    <div id='About'>    <About /></div>
+  <div id='Resume'>
+  <Resume />
+  </div>
+  
+      <Footer />
+    {/*   <div className="h-[3500px]"></div> */}
     </div>
   );
 };
 
-export default Home
+export default Home;

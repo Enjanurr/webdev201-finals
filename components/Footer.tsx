@@ -1,25 +1,26 @@
 import React from 'react';
-import Image from 'next/image';
+import Image from "next/image";
+//import Image from "next/legacy/image";
 import Link from 'next/link';
 import { FaYoutube, FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
 
 const links = [
-  { href: '/', name: 'Home' },
-  { href: '/explore', name: 'Explore' },
-  { href: '/about', name: 'About' },
-  { href: '/menu', name: 'Menu' },
-  { href: 'contact', name: 'Contact' },
+  { href: '/auth/login', name: 'Login' },
+  { href: '#Resume', name: 'Resume' },
+  { href: '#Book', name: 'Book' },
+  { href: '#About', name: 'About' },
 ];
 
 const Footer = () => {
   return (
     <footer className="bg-footer bg-cover bg-no-repeat pt-16 relative">
+      {/* overlay */}
       <div className="absolute w-full h-full bg-black/[0.90] z-10 top-0"></div>
-      <div className="container mx-auto">
-        <div>
+      <div className="container mx-auto z-20 relative">
+        <div className="flex flex-col items-center justify-center gap-14    ">
           <Link href="/" className="relative w-[120px] h-[50px] mx-auto">
             <Image
-              src="/assets/logo.svg"
+              src="/assets/logo-1.svg"
               fill
               alt=""
               className="object-contain"
@@ -38,34 +39,35 @@ const Footer = () => {
               );
             })}
           </nav>
-          <ul className='flex'>
+          <ul className="flex text-white text-xl gap-4">
             <Link
               href="/"
               className="w-[54px] h-[54px] border border-white/[0.15] rounded-full flex items-center justify-center hover:text-accent transition-all"
             >
-            <FaYoutube />
-            </Link> 
+              <FaYoutube />
+            </Link>
             <Link
               href="/"
               className="w-[54px] h-[54px] border border-white/[0.15] rounded-full flex items-center justify-center hover:text-accent transition-all"
             >
-            <FaFacebookF />
-            </Link> 
+              <FaFacebookF />
+            </Link>
             <Link
               href="/"
               className="w-[54px] h-[54px] border border-white/[0.15] rounded-full flex items-center justify-center hover:text-accent transition-all"
             >
-            <FaTwitter />
-            </Link> 
+              <FaTwitter />
+            </Link>
             <Link
               href="/"
               className="w-[54px] h-[54px] border border-white/[0.15] rounded-full flex items-center justify-center hover:text-accent transition-all"
             >
-            <FaInstagram />
-            </Link> 
+              <FaInstagram />
+            </Link>
           </ul>
-          <div className='border-t border-white/10 text-[15px] text-white/70 font-light w-fullflex items-center justify-center py-6'>
-            <p>&copy; Copyright - 2024 -Zenbrew. All rights reserved.</p>
+          {/* copyright */}
+          <div className="border-t border-white/10 text-[15px] text-white/70 font-light w-full flex items-center justify-center py-6">
+            <p>&copy; Copyright 2024 -Zenread. All rights reserved.</p>
           </div>
         </div>
       </div>

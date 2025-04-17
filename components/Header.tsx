@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
-import Image from 'next/image';
+import Image from "next/image";
+//import Image from "next/legacy/image";
 import { AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import Nav from './Nav';
@@ -17,7 +18,7 @@ const Header = () => {
             className="relative w-[100px] h-[40px] xl:w-[120px] xl:h-[40px] z-[60]"
           >
             <Image
-              src="/assets/logo.svg"
+              src="/assets/logo-1.svg"
               fill
               alt=""
               className="object-contain"

@@ -3,11 +3,11 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 
 const links = [
-  { href: '/', name: 'Home' },
-  { href: '/explore', name: 'Explore' },
-  { href: '/about', name: 'About' },
-  { href: '/menu', name: 'Menu' },
-  { href: '/contact', name: 'Contact' },
+  { href: '/auth/login', name: 'Login' },
+  
+  { href: '#Resume', name: 'Resume' },
+  { href: '#Book', name: 'Book' },
+  { href: '#About', name: 'About' },
 ];
 /*
 const letterAnim = {

@@ -1,4 +1,5 @@
-import Image from 'next/image';
+import Image from "next/image";
+//import Image from "next/legacy/image";
 import Separator from './Separator';
 import Badge from './Badge';
 import React from 'react';
