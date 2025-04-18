@@ -11,13 +11,17 @@ interface MenuProps {
 
 const BookItem: React.FC<MenuProps> = ({ imgSrc, title, author }) => {
   return (
-    <div className="flex items-center gap-4">
-      <div className="relative w-[60px] h-[60px] xl:w-[72px] xl:h-[72px] rounded-full">
+    <div className="flex items-center gap-10 ">
+   
+   <div className="relative w-[100px] h-[135px] xl:w-[100px] xl:h-[150px]">
+
+       
         <Image
           src={imgSrc}
           fill
           alt=""
           priority
+          
           quality={100}
           className="object-cover"
         />
@@ -31,13 +35,15 @@ const BookItem: React.FC<MenuProps> = ({ imgSrc, title, author }) => {
         
      
          
-           <button className='btn'>Borrow</button>
         </div>
         
         <p>{author}</p>
+        <div className=''><button className='btn'>Borrow</button>
+        </div>
       </div>
     </div>
   );
 };
 
 export default BookItem;
+//<button className='btn'>Borrow</button>

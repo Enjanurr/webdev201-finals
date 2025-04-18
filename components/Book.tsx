@@ -2,17 +2,20 @@ import React from 'react';
 import Separator from './Separator';
 import BookItem from './BookItem';
 const books = [
-  { imgSrc: '/assets/menu/book-1.svg', title: 'The Great Gatsby', author: 'F. Scott Fitzgerald' },
-  { imgSrc: '/assets/menu/book-2.svg', title: 'To Kill a Mockingbird', author: 'Harper Lee' },
-  { imgSrc: '/assets/menu/book-3.svg', title: '1984', author: 'George Orwell' },
-  { imgSrc: '/assets/menu/book-4.svg', title: 'Pride and Prejudice', author: 'Jane Austen' },
-  { imgSrc: '/assets/menu/book-5.svg', title: 'Moby-Dick', author: 'Herman Melville' },
-  { imgSrc: '/assets/menu/book-1.svg', title: 'The Hobbit', author: 'J.R.R. Tolkien' },
-  { imgSrc: '/assets/menu/book-2.svg', title: 'The Catcher in the Rye', author: 'J.D. Salinger' },
-  { imgSrc: '/assets/menu/book-3.svg', title: "Harry Potter and the Sorcerer's Stone", author: 'J.K. Rowling' },
-  { imgSrc: '/assets/menu/book-4.svg', title: 'The Lord of the Rings', author: 'J.R.R. Tolkien' },
-  { imgSrc: '/assets/menu/book-5.svg', title: 'Brave New World', author: 'Aldous Huxley' },
+  { imgSrc: '/assets/book/the great gatsby.svg', title: 'The Great Gatsby', author: 'F. Scott Fitzgerald' },
+  { imgSrc: '/assets/book/to kill a mocking bird.svg', title: 'To Kill a Mockingbird', author: 'Harper Lee' },//
+  { imgSrc: '/assets/book/1984.svg', title: '1984', author: 'George Orwell' },
+  { imgSrc: '/assets/book/pride and prejudice.svg', title: 'Pride and Prejudice', author: 'Jane Austen' },//
+  { imgSrc: '/assets/book/mobydick.svg', title: 'Moby-Dick', author: 'Herman Melville' },//
+  { imgSrc: '/assets/book/the hobbit.svg', title: 'The Hobbit', author: 'J.R.R. Tolkien' },//
+  { imgSrc: '/assets/book/the catcher in the rye.svg', title: 'The Catcher in the Rye', author: 'J.D. Salinger' },//
+  { imgSrc: '/assets/book/sorcerer.svg', title: "Harry Potter and the Sorcerer's Stone", author: 'J.K. Rowling' },//
+  { imgSrc: '/assets/book/the lord of the rings.svg', title: 'The Lord of the Rings', author: 'J.R.R. Tolkien' },//
+  { imgSrc: '/assets/book/the brave new world.svg', title: 'Brave New World', author: 'Aldous Huxley' },
+  {imgSrc: '/assets/book/eleanor.svg',title: 'Eleanor',author: 'Jason Gurley'},
+  {imgSrc: '/assets/book/star girl.svg',title: 'Stargirl',author: 'Jerry Spinelli',}
 ];
+localStorage.setItem("books",JSON.stringify(books));
 const Books = () => {
   return (
     <section className="pt-12 pb-16 xl:pt-16 xl:pb-36">
@@ -28,8 +31,9 @@ const Books = () => {
           </p>
         </div>
         
-        <div className="flex flex-col items-center gap-12 xl:gap-24">
-          <div className="w-full grid grid-cols-1 xl:grid-cols-2 gap-y-8 gap-x-16 place-content-center">
+       
+ <div className="flex flex-col items-center gap-12 xl:gap-24">
+          <div className="w-full grid grid-cols-1 xl:grid-cols-3 gap-y-8 gap-x-1 place-content-center">
             {books.map((book, index) => {
               const { title, author,imgSrc } = book;
               return (
@@ -43,8 +47,7 @@ const Books = () => {
             })}
           </div>
           <button className="btn"><a href="/ourBooks">Browse our Collection</a></button>
-        </div>
-      </div>
+        </div>      </div>
     </section>
   );
 };
