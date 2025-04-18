@@ -32,8 +32,9 @@ const Books = () => {
         </div>
         
        
- <div className="flex flex-col items-center gap-12 xl:gap-24">
-          <div className="w-full grid grid-cols-1 xl:grid-cols-3 gap-y-8 gap-x-1 place-content-center">
+ <div className="flex flex-col items-center gap-12 xl:gap-24 ">
+          <div className='flex justify-center'>
+          <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-y-8 gap-x-1 place-content-center ">
             {books.map((book, index) => {
               const { title, author,imgSrc } = book;
               return (
@@ -46,6 +47,7 @@ const Books = () => {
               );
             })}
           </div>
+          </div>
           <button className="btn"><a href="/ourBooks">Browse our Collection</a></button>
         </div>      </div>
     </section>
@@ -53,3 +55,4 @@ const Books = () => {
 };
 
 export default Books;
+//

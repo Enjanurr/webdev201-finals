@@ -214,12 +214,14 @@ export default function ourBook() {
             timeless classics to the latest bestsellers.
           </p>
         </div>
-        <div className="bg-black"></div>
+   
         <Swiper navigation={true} modules={[Navigation]} className="">
           {bookChunks.map((group, idx) => (
-            <SwiperSlide key={idx} className="w-full h-full p-16">
+           <SwiperSlide key={idx} className="w-full h-full px-4 py-8 xl:px-16 xl:py-16">
+
               <div className="flex flex-col items-center gap-12 xl:gap-24 px-4 ">
-                <div className="w-full grid grid-cols-1 xl:grid-cols-3 gap-y-8 gap-x-16 place-content-center">
+              <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-y-8 gap-x-16 place-items-center">
+
                   {group.map((book, index) => (
                     <BookItem
                       key={index}
