@@ -1,7 +1,41 @@
-import Image from "next/legacy/image";
-import Badge from "@/components/Badge";
-
+'use client';
+import Image from 'next/legacy/image';
+import Badge from '@/components/Badge';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 export default function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
+  const [messageType, setMessageType] = useState<'success' | 'error' | ''>('');
+
+  const router = useRouter();
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    setMessage(''); // set to empty
+
+    const storedUser = JSON.parse(localStorage.getItem('users') || '[]');
+
+    const matchUser = storedUser.find(
+      (user: { email: string; password: string }) =>
+        user.email === email && user.password === password
+    );
+    if (matchUser) {
+      const token = `${email}-${Date.now()}`;
+      localStorage.setItem('token', token);
+      localStorage.setItem("loggedInUser","true");
+      setMessage('Login successfully');
+      setMessageType('success');
+      
+      setTimeout(() => {
+        router.push('/');
+      }, 1000);
+    } else {
+      setMessage('Invalid email or password');
+    }
+  };
+
   return (
     <section className="h-screen w-screen">
       <div className="grid grid-cols-1 md:grid-cols-2 h-screen">
@@ -40,15 +74,20 @@ export default function Login() {
           <div className="w-full max-w-md p-8 bg-white shadow-lg rounded-lg">
             <h2 className="text-2xl text-center mb-6 font-bold">Sign in</h2>
 
-            <form className="space-y-4" action="/">
+            <form className="space-y-4"onSubmit={handleLogin}>
               {/* Email Input */}
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Email Address
                 </label>
                 <input
                   id="email"
                   type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
                   className="w-full p-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
                   required
@@ -57,22 +96,43 @@ export default function Login() {
 
               {/* Password Input */}
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium text-gray-700"
+                >
                   Password
                 </label>
                 <input
                   id="password"
                   type="password"
                   placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   className="w-full p-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
                   required
                 />
               </div>
-
+              <div className="h-2">
+                {' '}
+                {message && (
+                  <p
+                    className={`${
+                      message.includes('success')
+                        ? 'text-green-500'
+                        : 'text-red-500'
+                    }`}
+                  >
+                    {message}
+                  </p>
+                )}
+              </div>
               {/* Register Link */}
               <p className="text-sm text-gray-600">
-                Don't have an account yet?{" "}
-                <a href="/auth/register" className="text-black font-semibold hover:underline">
+                Don't have an account yet?{' '}
+                <a
+                  href="/auth/register"
+                  className="text-black font-semibold hover:underline"
+                >
                   Click here to Register
                 </a>
               </p>

@@ -8,6 +8,7 @@ const links = [
   { href: '#Resume', name: 'Resume' },
   { href: '#Book', name: 'Book' },
   { href: '#About', name: 'About' },
+  { href: '/profile', name: 'profile' },
 ];
 /*
 const letterAnim = {
@@ -26,6 +27,7 @@ const letterAnim = {
 };*/
 
 const NavList = () => {
+  
   return (
     <ul
       className="flex flex-col gap-8 font-primary text-4xl font-semibold

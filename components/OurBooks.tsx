@@ -1,22 +1,19 @@
-'use client'
 import React from 'react';
 import Image from "next/image";
-import { useRouter } from 'next/navigation';
+
 //import Image from "next/legacy/image";
 
-const handleClick = ()=>{
-  const router = useRouter();
-  router.push("/ourBooks");
-}
 
 interface MenuProps {
   imgSrc: string;
   title: string;
   author: string;
+  isBorrowed:boolean;
+  onBorrow:() => void
  // price?: number; // Make price optional
 }
 
-const BookItem: React.FC<MenuProps> = ({ imgSrc, title, author }) => {
+const OurBook: React.FC<MenuProps> = ({ imgSrc, title, author,isBorrowed,onBorrow }) => {
   return (
     <div className="flex flex-col items-center text-center gap-4 p-4 rounded-lg max-w-sm w-ful">
    
@@ -45,12 +42,12 @@ const BookItem: React.FC<MenuProps> = ({ imgSrc, title, author }) => {
         </div>
         
         <p>{author}</p>
-        <div className=''><button className="btn" onClick={handleClick}>Borrow</button>
+        <div className=''><button className='btn' onClick={onBorrow} disabled={isBorrowed}>{isBorrowed ? "Borrowed" : "Borrow"}</button>
         </div>
       </div>
     </div>
   );
 };
 
-export default BookItem;
+export default OurBook;
 //<button className='btn'>Borrow</button>

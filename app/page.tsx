@@ -9,8 +9,18 @@ import Resume from '@/components/Resume';
 import AboutUs from '@/components/Resume';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-
+import { useRouter } from 'next/navigation';
 const Home = () => {
+  const router = useRouter();
+
+useEffect(()=>{
+  //const user = localStorage.getItem("users");
+  const isLoggedIn = localStorage.getItem("loggedInUser");
+  if(!isLoggedIn){
+    router.push("/auth/login")
+  }
+},[])
+
   useEffect(() => {
     const loadLocomotiveScroll = async () => {
       const LocomotiveScroll = (await import('locomotive-scroll')).default;

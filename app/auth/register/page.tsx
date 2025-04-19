@@ -1,7 +1,42 @@
+'use client'
+import { useState} from "react";
 import Image from "next/legacy/image";
 import Badge from "@/components/Badge";
+import { useRouter } from "next/navigation";
 
 export default function Register() {
+const [user,setUser] = useState("");
+const [email , setEmail] = useState("");
+const [password,setPassword] = useState("");
+const [confirm , setConfirmed] = useState("");
+const [message , setMessage] = useState("");
+const router = useRouter();
+
+const handleRegister = (e: React.FormEvent) => {
+  e.preventDefault();
+  setMessage("");
+  // get the input 
+  if(password !== confirm){
+    setMessage("Password do not match");
+    return;
+  }
+const storedUser = JSON.parse(localStorage.getItem('users') || "[]")
+const exist = storedUser.find((user:any)=> email === user.email);
+if(exist){
+  setMessage("Email already registered");
+  return;
+}
+const newUser = {username:user,email,password};
+storedUser.push(newUser);
+
+localStorage.setItem("users",JSON.stringify(storedUser))
+
+setMessage("Registered successfully. You can now log in.");
+setTimeout(() => {
+  router.push("/auth/login")
+}, 1000);
+
+}
   return (
     <section className="h-screen w-screen">
       <div className="grid grid-cols-1 md:grid-cols-2 h-screen">
@@ -40,7 +75,7 @@ export default function Register() {
           <div className="w-full max-w-md p-8 bg-white shadow-lg rounded-lg">
             <h2 className="text-2xl text-center mb-6 font-bold">Register</h2>
 
-            <form className="space-y-4" action="/auth/login">
+            <form className="space-y-4" onSubmit={handleRegister} >
               {/* Username Input */}
               <div>
                 <label htmlFor="username" className="block text-sm font-medium text-gray-700">
@@ -49,6 +84,8 @@ export default function Register() {
                 <input
                   id="username"
                   type="text"
+                  value={user}
+                  onChange={(e)=>setUser(e.target.value)}
                   placeholder="Enter your username"
                   className="w-full p-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
                   required
@@ -63,6 +100,8 @@ export default function Register() {
                 <input
                   id="email"
                   type="email"
+                  value={email}
+                  onChange={(e)=>setEmail(e.target.value)}
                   placeholder="Enter your email"
                   className="w-full p-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
                   required
@@ -77,6 +116,8 @@ export default function Register() {
                 <input
                   id="password"
                   type="password"
+                  value={password}
+                  onChange={(e)=>setPassword(e.target.value)}
                   placeholder="Enter your password"
                   className="w-full p-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
                   required
@@ -91,12 +132,27 @@ export default function Register() {
                 <input
                   id="confirm-password"
                   type="password"
+                  value={confirm}
+                  onChange={(e)=>setConfirmed(e.target.value)}
                   placeholder="Re-enter your password"
                   className="w-full p-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:outline-none"
                   required
                 />
               </div>
-
+              <div className="h-2">
+                {' '}
+                {message && (
+                  <p
+                    className={`${
+                      message.includes('success')
+                        ? 'text-green-500'
+                        : 'text-red-500'
+                    }`}
+                  >
+                    {message}
+                  </p>
+                )}
+              </div>
               {/* Login Link */}
               <p className="text-sm text-gray-600">
                 Already have an account?{" "}
