@@ -13,13 +13,13 @@ import { useRouter } from 'next/navigation';
 const Home = () => {
   const router = useRouter();
 
-useEffect(()=>{
+/* useEffect(()=>{
   //const user = localStorage.getItem("users");
   const isLoggedIn = localStorage.getItem("loggedInUser");
   if(!isLoggedIn){
     router.push("/auth/login")
   }
-},[])
+},[]) */
 
   useEffect(() => {
     const loadLocomotiveScroll = async () => {

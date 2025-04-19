@@ -10,10 +10,10 @@ import {
 } from "@/components/ui/hover-card";
 
 
-const handleClick = ()=>{
+/*const handleClick = ()=>{
   const router = useRouter();
   router.push("/ourBooks");
-}
+} */
 
 const books = [
   {
@@ -132,7 +132,7 @@ const Books = () => {
             })}
           </div>
           </div>
-          <button className="btn" onClick={handleClick}>Browse our Collection</button>
+          <button className="btn" >Browse our Collection</button> {/* onClick={handleClick} */}
         </div>      </div>
     </section>
   );

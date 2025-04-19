@@ -10,8 +10,7 @@ export default function Login() {
   const [messageType, setMessageType] = useState<'success' | 'error' | ''>('');
 
   const router = useRouter();
-
-  const handleLogin = (e: React.FormEvent) => {
+/*   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     setMessage(''); // set to empty
 
@@ -34,7 +33,8 @@ export default function Login() {
     } else {
       setMessage('Invalid email or password');
     }
-  };
+  };*/
+
 
   return (
     <section className="h-screen w-screen">
@@ -74,7 +74,7 @@ export default function Login() {
           <div className="w-full max-w-md p-8 bg-white shadow-lg rounded-lg">
             <h2 className="text-2xl text-center mb-6 font-bold">Sign in</h2>
 
-            <form className="space-y-4"onSubmit={handleLogin}>
+            <form className="space-y-4"> {/* onSubmit={handleLogin} */}
               {/* Email Input */}
               <div>
                 <label

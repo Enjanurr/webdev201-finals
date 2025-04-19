@@ -12,7 +12,7 @@ const [confirm , setConfirmed] = useState("");
 const [message , setMessage] = useState("");
 const router = useRouter();
 
-const handleRegister = (e: React.FormEvent) => {
+/*const handleRegister = (e: React.FormEvent) => {
   e.preventDefault();
   setMessage("");
   // get the input 
@@ -36,7 +36,7 @@ setTimeout(() => {
   router.push("/auth/login")
 }, 1000);
 
-}
+} */
   return (
     <section className="h-screen w-screen">
       <div className="grid grid-cols-1 md:grid-cols-2 h-screen">
@@ -75,7 +75,7 @@ setTimeout(() => {
           <div className="w-full max-w-md p-8 bg-white shadow-lg rounded-lg">
             <h2 className="text-2xl text-center mb-6 font-bold">Register</h2>
 
-            <form className="space-y-4" onSubmit={handleRegister} >
+            <form className="space-y-4"  > {/* onSubmit={handleRegister} */}
               {/* Username Input */}
               <div>
                 <label htmlFor="username" className="block text-sm font-medium text-gray-700">

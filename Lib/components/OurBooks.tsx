@@ -8,12 +8,12 @@ interface MenuProps {
   imgSrc: string;
   title: string;
   author: string;
-  isBorrowed:boolean;
-  onBorrow:() => void
+  //isBorrowed:boolean;
+ //onBorrow:() => void
  // price?: number; // Make price optional
 }
 
-const OurBook: React.FC<MenuProps> = ({ imgSrc, title, author,isBorrowed,onBorrow }) => {
+const OurBook: React.FC<MenuProps> = ({ imgSrc, title, author }) => { //,isBorrowed,onBorrow
   return (
     <div className="flex flex-col items-center text-center gap-4 p-4 rounded-lg max-w-sm w-ful">
    
@@ -42,7 +42,7 @@ const OurBook: React.FC<MenuProps> = ({ imgSrc, title, author,isBorrowed,onBorro
         </div>
         
         <p>{author}</p>
-        <div className=''><button className='btn' onClick={onBorrow} disabled={isBorrowed}>{isBorrowed ? "Borrowed" : "Borrow"}</button>
+        <div className=''><button className='btn' >Borrow</button> {/*onClick={onBorrow} disabled={isBorrowed} {isBorrowed ? "Borrowed" : "Borrow"} */}
         </div>
       </div>
     </div>

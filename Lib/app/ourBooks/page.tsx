@@ -329,9 +329,9 @@ export default function ourBook() {
                        title={book.title}
                        author={book.author}
                        imgSrc={book.imgSrc}
-                       isBorrowed = {!!borrowed[book.title]}
-                       onBorrow = {()=>handleBorrow(book.title)}
-                     /></HoverCardTrigger>
+                      
+                     /></HoverCardTrigger> {/*  isBorrowed = {!!borrowed[book.title]}
+                      onBorrow = {()=>handleBorrow(book.title)} */}
                    <HoverCardContent className="bg-white dark:bg-zinc-900 p-4 rounded-md shadow-lg max-w-xs text-sm text-zinc-800 dark:text-zinc-200">
                    <p className="uppercase font-primary font-semibold text-[22px] leading-none text-primary">{book.title}</p>{book.description}
      </HoverCardContent>
