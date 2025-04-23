@@ -66,3 +66,19 @@ export const register = async(req:Request, res:Response):Promise<any>=>{
         console.error("Server error",error);
     }
 }
+
+
+export const logout = async (req: Request, res: Response): Promise<any> => {
+  try {
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+    });
+
+    return res.status(200).json({ message: "Logged out successfully" });
+  } catch (error) {
+    console.error("Logout error:", error);
+    return res.status(500).json({ message: "Something went wrong during logout" });
+  }
+};

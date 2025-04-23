@@ -32,7 +32,7 @@ export default function Login() {
         console.log("Login was successful");
         setMessage('Login successful');
         setMessageType('success');
-       
+
         setTimeout(() => {
           router.push('/'); 
         }, 1000);
