@@ -32,7 +32,7 @@ const Home = () => {
   
   return (
     <div className="h-full overflow-x-hidden">
-      <Header />
+    <Header /> 
     <div>
     <Hero />
     </div>

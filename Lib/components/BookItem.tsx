@@ -4,10 +4,7 @@ import Image from "next/image";
 import { useRouter } from 'next/navigation';
 //import Image from "next/legacy/image";
 
-/*const handleClick = ()=>{
-  const router = useRouter();
-  router.push("/ourBooks");
-} */
+
 
 interface MenuProps {
   imgSrc: string;
@@ -17,6 +14,11 @@ interface MenuProps {
 }
 
 const BookItem: React.FC<MenuProps> = ({ imgSrc, title, author }) => {
+  const router = useRouter();
+  const handleClick = ()=>{
+    
+    router.push("/ourBooks");
+  } 
   return (
     <div className="flex flex-col items-center text-center gap-4 p-4 rounded-lg max-w-sm w-ful">
    
@@ -45,7 +47,7 @@ const BookItem: React.FC<MenuProps> = ({ imgSrc, title, author }) => {
         </div>
         
         <p>{author}</p>
-        <div className=''><button className="btn" >Borrow</button>{/* onClick={handleClick} */}
+        <div className=''><button className="btn"  onClick={handleClick}>Borrow</button>{/* */}
         </div>
       </div>
     </div>

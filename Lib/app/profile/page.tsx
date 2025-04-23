@@ -1,128 +1,90 @@
+'use client'
 import Separator from '@/components/Separator';
 import { FaUserCircle } from 'react-icons/fa';
-import BookItem from '@/components/BookItem';
+import ReturnBook from '@/components/ReturnBook';
+import React, { useEffect, useState } from 'react';
+import Header from '@/components/Header';
+
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
 } from '@/components/ui/hover-card';
 
-const books = [
-  {
-    imgSrc: '/assets/book/the great gatsby.svg',
-    title: 'The Great Gatsby',
-    author: 'F. Scott Fitzgerald',
-    description:
-      'A tale of wealth, love, and illusion set in the Roaring Twenties, exploring the mysterious life of Jay Gatsby.',
-  },
-  {
-    imgSrc: '/assets/book/to kill a mocking bird.svg',
-    title: 'To Kill a Mockingbird',
-    author: 'Harper Lee',
-    description:
-      'A powerful story about racial injustice and childhood innocence in the Deep South, seen through the eyes of young Scout Finch.',
-  },
-  {
-    imgSrc: '/assets/book/1984.svg',
-    title: '1984',
-    author: 'George Orwell',
-    description:
-      'A dystopian novel depicting a totalitarian regime that watches and controls every aspect of human life.',
-  },
-  {
-    imgSrc: '/assets/book/pride and prejudice.svg',
-    title: 'Pride and Prejudice',
-    author: 'Jane Austen',
-    description:
-      'A romantic classic that follows Elizabeth Bennet as she navigates love, class, and societal expectations in 19th-century England.',
-  },
-  {
-    imgSrc: '/assets/book/mobydick.svg',
-    title: 'Moby-Dick',
-    author: 'Herman Melville',
-    description:
-      'An epic sea adventure following Captain Ahab’s obsessive quest to hunt the elusive white whale, Moby Dick.',
-  },
-  {
-    imgSrc: '/assets/book/the hobbit.svg',
-    title: 'The Hobbit',
-    author: 'J.R.R. Tolkien',
-    description:
-      'Bilbo Baggins embarks on an unexpected adventure filled with dragons, dwarves, and treasure in this beloved fantasy tale.',
-  },
-  {
-    imgSrc: '/assets/book/the catcher in the rye.svg',
-    title: 'The Catcher in the Rye',
-    author: 'J.D. Salinger',
-    description:
-      'A coming-of-age story of teenage alienation and rebellion, told through the voice of the cynical Holden Caulfield.',
-  },
-  {
-    imgSrc: '/assets/book/sorcerer.svg',
-    title: "Harry Potter and the Sorcerer's Stone",
-    author: 'J.K. Rowling',
-    description:
-      'An ordinary boy discovers he is a wizard and enters a world of magic, mystery, and friendship at Hogwarts School.',
-  },
-  {
-    imgSrc: '/assets/book/the lord of the rings.svg',
-    title: 'The Lord of the Rings',
-    author: 'J.R.R. Tolkien',
-    description:
-      'An epic saga of good versus evil as Frodo Baggins journeys to destroy a powerful ring that threatens Middle-earth.',
-  },
-  {
-    imgSrc: '/assets/book/the brave new world.svg',
-    title: 'Brave New World',
-    author: 'Aldous Huxley',
-    description:
-      'A chilling vision of a future society driven by technology, control, and the loss of individuality and emotion.',
-  },
-  {
-    imgSrc: '/assets/book/eleanor.svg',
-    title: 'Eleanor',
-    author: 'Jason Gurley',
-    description:
-      'A moving story about grief, loss, and the power of time, as a girl uncovers the secrets of her family’s past.',
-  },
-  {
-    imgSrc: '/assets/book/star girl.svg',
-    title: 'Stargirl',
-    author: 'Jerry Spinelli',
-    description:
-      'A heartwarming tale about nonconformity and kindness, as a unique girl challenges the norms of high school life.',
-  },
-];
+interface Book {
+  _id: string;
+  imgSrc: string;
+  title: string;
+  author: string;
+  description: string;
+  isAvailable: boolean;
+}
 
-export default function profile() {
-  //const user = JSON.parse(localStorage.getItem("users",JSON.stringify()))
+export default function Profile() {
+  const [books, setBooks] = useState<Book[]>([]);
+
+  useEffect(() => {
+    const fetchBooks = async () => {
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/home/borrowed`, {
+          cache: "no-store",
+        });
+
+        if (!res.ok) throw new Error("Failed to fetch books");
+
+        const data = await res.json();
+        setBooks(data.books);
+      } catch (error) {
+        console.error("Error fetching books:", error);
+      }
+    };
+
+    fetchBooks();
+  }, []);
+
   return (
-    <section className="w-full h-full">
-      <div className="mx-auto container flex flex-col min-h-screen">
-        {/* Profile Section - Always on top */}
-        <div className="w-full flex flex-col items-center p-6">
-  <h2 className="text-4xl font-bold mb-8 text-white">Profile</h2>
-
-  <div className="bg-white dark:bg-zinc-900 rounded-2xl shadow-lg p-6 sm:p-8 w-full max-w-3xl flex items-center gap-6">
-    <FaUserCircle size={100} className="text-gray-700 dark:text-gray-300" />
-    <div>
-      <h1 className="text-2xl font-bold text-gray-900 dark:text-white">John Doe</h1>
-      <p className="text-gray-600 dark:text-gray-400 text-base">john.doe@example.com</p>
-      <p className="text-sm mt-1 text-gray-500 dark:text-gray-500">Member since: January 2024</p>
+    <section className="w-full h-full pb-20">
+    {/* Header Section */}
+    <div className="bg-primary h-28 flex items-center px-4 xl:px-16">
+      <Header />
     </div>
-  </div>
-</div>
-
+  
+    {/* Main Container */}
+    <div className="container mx-auto flex flex-col min-h-screen py-8">
+      {/* Profile Section */}
+      <div className="w-full flex flex-col items-center px-4 mb-12">
+        <h2 className="text-4xl font-bold mb-8 text-white">Profile</h2>
+        <div className="bg-white dark:bg-zinc-900 rounded-2xl shadow-lg p-6 sm:p-8 w-full max-w-3xl flex items-center gap-6">
+          <FaUserCircle size={100} className="text-gray-700 dark:text-gray-300" />
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">John Doe</h1>
+            <p className="text-gray-600 dark:text-gray-400 text-base">john.doe@example.com</p>
+            <p className="text-sm mt-1 text-gray-500 dark:text-gray-500">Member since: January 2024</p>
+          </div>
+        </div>
+      </div>
+  
+      {/* Separator */}
+      <div className="px-4 mb-8">
         <Separator bg="accent" />
-        {/* Books Section */}
-        <div className="w-full flex flex-col items-center text-white text-3xl p-4">
-          <h2 className="h2 mb-6">Books</h2>
+      </div>
+  
+      {/* Books Section */}
+      <div className="w-full flex flex-col items-center text-white px-4">
+        <h2 className="h2 mb-6">Books</h2>
+        
+        <div className="mb-6 w-full">
           <Separator bg="accent" />
-          <div className="w-full grid sm:grid-cols-2 xl:grid-cols-3 gap-y-8 gap-x-4 place-content-center mt-6">
-            {books.map((book, index) => (
-              <HoverCard key={index}>
+        </div>
+  
+        {books.length > 0 ? (
+          <div className="w-full grid sm:grid-cols-2 xl:grid-cols-3 gap-y-8 gap-x-4 place-content-center mt-14">
+            
+            {books.map((book) => (
+              <HoverCard key={book._id}>
                 <HoverCardTrigger>
-                  <BookItem
+                  <ReturnBook
+                    book_id={book._id}
                     title={book.title}
                     author={book.author}
                     imgSrc={book.imgSrc}
@@ -137,8 +99,16 @@ export default function profile() {
               </HoverCard>
             ))}
           </div>
-        </div>
+        ) : (
+          <div className="flex justify-center items-center w-full h-40">
+            <p className="text-center text-xl text-gray-300">
+              No borrowed books at the moment.
+            </p>
+          </div>
+        )}
       </div>
-    </section>
+    </div>
+  </section>
+  
   );
 }

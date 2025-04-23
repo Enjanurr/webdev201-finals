@@ -3,6 +3,8 @@ import Image from 'next/legacy/image';
 import Badge from '@/components/Badge';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+
+
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -10,30 +12,42 @@ export default function Login() {
   const [messageType, setMessageType] = useState<'success' | 'error' | ''>('');
 
   const router = useRouter();
-/*   const handleLogin = (e: React.FormEvent) => {
+
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setMessage(''); // set to empty
+  
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/auth/login`  , {
+        method: 'POST',
+        credentials:"include",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+  
+      const data = await res.json();// json from the backend
+  
+      if (res.ok) {
+        console.log("Login was successful");
+        setMessage('Login successful');
+        setMessageType('success');
+       
+        setTimeout(() => {
+          router.push('/'); 
+        }, 1000);
 
-    const storedUser = JSON.parse(localStorage.getItem('users') || '[]');
-
-    const matchUser = storedUser.find(
-      (user: { email: string; password: string }) =>
-        user.email === email && user.password === password
-    );
-    if (matchUser) {
-      const token = `${email}-${Date.now()}`;
-      localStorage.setItem('token', token);
-      localStorage.setItem("loggedInUser","true");
-      setMessage('Login successfully');
-      setMessageType('success');
-      
-      setTimeout(() => {
-        router.push('/');
-      }, 1000);
-    } else {
-      setMessage('Invalid email or password');
+      } else {
+        setMessage(data.message || 'Login failed');
+        setMessageType('error');
+      }
+    } catch (error) {
+      setMessage('Something went wrong');
+      setMessageType('error');
+      console.error(error);
     }
-  };*/
+  };
+  
 
 
   return (
@@ -74,7 +88,7 @@ export default function Login() {
           <div className="w-full max-w-md p-8 bg-white shadow-lg rounded-lg">
             <h2 className="text-2xl text-center mb-6 font-bold">Sign in</h2>
 
-            <form className="space-y-4"> {/* onSubmit={handleLogin} */}
+            <form className="space-y-4" onSubmit={handleLogin}> {/* onSubmit={handleLogin} */}
               {/* Email Input */}
               <div>
                 <label

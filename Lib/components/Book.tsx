@@ -10,10 +10,6 @@ import {
 } from "@/components/ui/hover-card";
 
 
-/*const handleClick = ()=>{
-  const router = useRouter();
-  router.push("/ourBooks");
-} */
 
 const books = [
   {
@@ -92,6 +88,11 @@ const books = [
 
 //localStorage.setItem("books",JSON.stringify(books));
 const Books = () => {
+ const router = useRouter();
+  const handleClick = ()=>{
+    
+    router.push("/ourBooks");
+  }
   return (
     <section className="pt-12 pb-16 xl:pt-16 xl:pb-36">
       <div className="container mx-auto">
@@ -113,10 +114,10 @@ const Books = () => {
             {books.map((book, index) => {
               const { title, author,imgSrc } = book;
               return (
-               <HoverCard>
+               <HoverCard key={index}>
                 <HoverCardTrigger> 
                   <BookItem
-                  key={index}
+                  
                   title={book.title}
                   author={book.author}
                   imgSrc={book.imgSrc}
@@ -132,7 +133,7 @@ const Books = () => {
             })}
           </div>
           </div>
-          <button className="btn" >Browse our Collection</button> {/* onClick={handleClick} */}
+          <button className="btn" onClick={handleClick}>Browse our Collection</button> {/* onClick={handleClick} */}
         </div>      </div>
     </section>
   );

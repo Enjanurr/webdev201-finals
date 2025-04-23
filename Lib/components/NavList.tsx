@@ -5,9 +5,8 @@ import Link from 'next/link';
 const links = [
   { href: '/auth/login', name: 'Login' },
   
-  { href: '#Resume', name: 'Resume' },
-  { href: '#Book', name: 'Book' },
-  { href: '#About', name: 'About' },
+  { href: '/auth/register', name: 'Register' },
+  { href: '/ourBooks', name: 'Book' },
   { href: '/profile', name: 'profile' },
 ];
 /*
