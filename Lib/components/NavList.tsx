@@ -6,8 +6,9 @@ const links = [
   { href: '/auth/login', name: 'Login' },
   
   { href: '/auth/register', name: 'Register' },
-  { href: '/ourBooks', name: 'Book' },
-  { href: '/profile', name: 'profile' },
+  { href: '/ourBooks', name: 'Books' },
+  {href: '/borrowedBooks',name:"Borrowed Books"},
+  { href: '/editProfile', name: 'profile' },
 ];
 /*
 const letterAnim = {

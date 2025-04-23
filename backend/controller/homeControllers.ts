@@ -1,6 +1,17 @@
 import { Request, Response } from "express";
-import { Books, User } from "../initializers/database";
+import { Books,User } from "../initializers/database";
 
+
+interface DecodedUser {
+  _id: string;
+  email?: string;
+  iat?: number;
+  exp?: number;
+}
+
+interface CustomRequest extends Request {
+  user?: DecodedUser;
+}
 //works
 export const books = async (req: Request, res: Response): Promise<any> => {
   try {
@@ -26,16 +37,7 @@ export const addBook = async (req: Request, res: Response): Promise<any> => {
 };
 
 // it works
-interface DecodedUser {
-  _id: string;
-  email?: string;
-  iat?: number;
-  exp?: number;
-}
 
-interface CustomRequest extends Request {
-  user?: DecodedUser;
-}
 
 export const borrow = async (req: CustomRequest, res: Response): Promise<any> => {
   try {
@@ -72,15 +74,30 @@ export const borrow = async (req: CustomRequest, res: Response): Promise<any> =>
     return res.status(500).json({ message: "Something went wrong", error });
   }
 };
-export const profile = async(req:Request,res:Response):Promise<any>=>{
-try {
-    const borrowed = await Books.find({isAvailable:false});
-    return res.status(200).json({ message: "Borrowed books fetched successfully", books: borrowed });
-} catch (error) {
-    console.error("Failed to return the book",error);
-    return res.status(500).json({message:"Something went wrong", error})
-}
-}
+
+
+export const borrowedBooksAndProfile = async (req: CustomRequest, res: Response): Promise<any> => {
+  try {
+    const userId = req.user?._id; // Get the logged-in user's ID
+
+    // Fetch books specifically borrowed by the current user
+    const borrowedBooks = await Books.find({ borrowedBy: userId }); // Books where borrowedBy matches the userId
+
+    // Fetch user information
+    const userInfo = await User.findOne({ _id: userId });
+
+    return res.status(200).json({
+      message: "Books fetched successfully",
+      borrowedBooks: borrowedBooks,   // Books that the current user has borrowed
+      userInfo: userInfo
+    });
+  } catch (error) {
+    console.error("Failed to fetch books", error);
+    return res.status(500).json({ message: "Something went wrong", error });
+  }
+};
+
+
 // it works
 export const returned = async(req:Request,res:Response):Promise<any> =>{
     try {
@@ -88,13 +105,28 @@ export const returned = async(req:Request,res:Response):Promise<any> =>{
          const book = await Books.findOne({_id:book_id, isAvailable:false});
          // return the book
          const returned = await Books.findOneAndUpdate(
-            {_id:book_id},
-            {isAvailable:true},
-            {new:true}
-         )
+          { _id: book_id },
+          {
+              isAvailable: true,
+              borrowedBy: null,
+              borrowAt: null,
+              returnDate: null
+          },
+          { new: true }
+      );
          return res.status(200).json({message:"Returned successfully", returnedBook: returned})
     } catch (error) {
         console.error("Failed to return book",error)
         return res.status(500).json({message:"Failed to return the book",error})
     }
 }
+
+export const dummy= async(req:Request,res:Response):Promise<any>=>{
+  try {
+      const borrowed = await Books.find({isAvailable:false});
+      return res.status(200).json({ message: "Borrowed books fetched successfully", books: borrowed});
+  } catch (error) {
+      console.error("Failed to return the book",error);
+      return res.status(500).json({message:"Something went wrong", error})
+  }
+  }

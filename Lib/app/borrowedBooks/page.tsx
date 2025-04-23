@@ -6,12 +6,21 @@ import ReturnBook from '@/components/ReturnBook';
 import React, { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import { useRouter } from 'next/navigation';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
 } from '@/components/ui/hover-card';
+import { userInfo } from 'os';
 
 interface Book {
   _id: string;
@@ -26,8 +35,15 @@ export default function Profile() {
   const [books, setBooks] = useState<Book[]>([]);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(true);
   const [redirectMessage, setRedirectMessage] = useState<string>('');
+  const [showModal, setShowModal] = useState<boolean>(false);  // For controlling modal visibility
+  const [userInfo,setUserInfo] = useState<any>(null);
   const router = useRouter();
 
+
+  
+  const EditProfile = async()=>{
+    router.push("/editProfile");
+  }
   const logoutHandler = async () => {
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/auth/logout`, {
@@ -45,6 +61,11 @@ export default function Profile() {
     }
   };
 
+  const handleOkClick = () => {
+    setShowModal(false); // Close the modal and redirect to login
+    router.push('/auth/login');
+  };
+
   useEffect(() => {
     const fetchBooks = async () => {
       try {
@@ -56,19 +77,17 @@ export default function Profile() {
         if (res.status === 401) {
           // Token expired or user not logged in
           setIsAuthenticated(false);
-          setRedirectMessage("Session expired. Redirecting to login...");
+          setRedirectMessage("Session expired. Need to log in again.");
 
-          setTimeout(() => {
-            router.push('/auth/login');
-          }, 2000);
-
+          setShowModal(true);  // Show the modal with session expired message
           return;
         }
 
         if (!res.ok) throw new Error("Failed to fetch books");
 
         const data = await res.json();
-        setBooks(data.books);
+        setBooks(data.borrowedBooks  || []); 
+        setUserInfo(data.userInfo)
       } catch (error) {
         console.error("Error fetching books:", error);
       }
@@ -88,18 +107,36 @@ export default function Profile() {
       <div className="container mx-auto flex flex-col min-h-screen py-8">
         {/* Profile Card */}
         <div className="w-full flex flex-col items-center px-4 mb-12">
-          <h2 className="text-4xl font-bold mb-8 text-white">Profile</h2>
+        
           <div className="bg-white dark:bg-zinc-900 rounded-2xl shadow-lg p-6 sm:p-8 w-full max-w-3xl flex flex-col sm:flex-row items-center gap-6">
             
             {/* Avatar */}
-            <FaUserCircle size={100} className="text-gray-700 dark:text-gray-300" />
+            <div >
+            {userInfo?.profilePicture ? (
+               <img
+               src={`http://localhost:8080/${userInfo.profilePicture}`} 
+               alt="Profile"
+               className="w-24 h-24 rounded-full object-cover"
+             />
+             
+              ) : (
+                <FaUserCircle size={100} className="text-gray-700 dark:text-gray-300" />
+              )}
+            <button onClick={EditProfile} className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg transition mt-2">Edit Profile</button>
 
-            {/* Info */}
-            <div className="flex-1 text-center sm:text-left">
-              <h1 className="text-2xl font-bold text-gray-900 dark:text-white">John Doe</h1>
-              <p className="text-gray-600 dark:text-gray-400 text-base">john.doe@example.com</p>
-              <p className="text-sm mt-1 text-gray-500 dark:text-gray-500">Member since: January 2024</p>
             </div>
+            {/* Info */}
+           {userInfo && (
+             <div className="flex-1 text-center sm:text-left">
+             <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Name: {userInfo.userName}</h1>
+             <p className="text-gray-600 dark:text-gray-400 text-base">Email: {userInfo.email}</p>
+             <p className="text-sm mt-1 text-gray-500 dark:text-gray-500">Joined since {new Date(userInfo.joined).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  })}</p>
+           </div>
+           )}
 
             {/* Logout Button */}
             {isAuthenticated && (
@@ -113,11 +150,6 @@ export default function Profile() {
               </div>
             )}
           </div>
-
-          {/* Redirect Message */}
-          {redirectMessage && (
-            <p className="text-red-500 mt-4 text-center">{redirectMessage}</p>
-          )}
         </div>
 
         {/* Separator */}
@@ -164,6 +196,29 @@ export default function Profile() {
             )}
           </div>
         )}
+
+        {/* Session Expired Modal */}
+        {showModal && (
+  <div className="fixed inset-0 flex justify-center items-center bg-gray-500 bg-opacity-40 backdrop-blur-sm">
+    <Card className="w-96 text-white p-6 rounded-xl shadow-lg bg-white bg-opacity-40">
+      <CardHeader>
+        <CardTitle>Session Expired</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <CardDescription>{redirectMessage}</CardDescription>
+      </CardContent>
+      <CardFooter className="flex justify-center">
+        <button
+          onClick={handleOkClick}
+          className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg mt-4"
+        >
+          OK
+        </button>
+      </CardFooter>
+    </Card>
+  </div>
+)}
+
       </div>
     </section>
   );

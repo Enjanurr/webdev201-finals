@@ -8,12 +8,20 @@ interface IUser extends Document {
     userName:string;
     email:string;
     password:string;
+    joined:string;
+    profilePicture?:string;
 }
 const userSchema = new Schema<IUser>({
-    userName: { type:String , required:true},
-    email:{type:String,required:true},
-    password: {type:String,required:true}
-})
+    userName: { type: String, required: true },
+    email: { type: String, required: true },
+    password: { type: String, required: true },
+    joined: { type: String, required: true },
+    profilePicture: { 
+      data: Buffer, 
+      contentType: String 
+    }
+  });
+  
 
 interface IBook extends Document{
     imgSrc:string;

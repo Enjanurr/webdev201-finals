@@ -19,6 +19,7 @@ app.use(cors({
 // order matters broo, make sure to put this here before anything else or you get an error, you don't code in c
 app.use(express.json());
 app.use(cookieParser());
+app.use("/uploads", express.static("uploads"));
 app.use("/api",routes);
 
 
