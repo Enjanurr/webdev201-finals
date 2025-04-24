@@ -1,0 +1,417 @@
+[{
+  "_id": {
+    "$oid": "6806591fead167869101d8bf"
+  },
+  "title": "The Great Gatsby",
+  "imgSrc": "/assets/book/the great gatsby.svg",
+  "author": "F. Scott Fitzgerald",
+  "description": "A tragic tale of wealth and obsession in the Jazz Age, centered around the mysterious Jay Gatsby.",
+  "isAvailable": false,
+  "__v": 0,
+  "borrowAt": {
+    "$date": "2025-04-23T10:57:55.607Z"
+  },
+  "borrowedBy": {
+    "$oid": "6808c171d7633fe78bca351c"
+  },
+  "returnDate": {
+    "$date": "2025-04-30T10:57:55.607Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6806592aead167869101d8c1"
+  },
+  "title": "To Kill a Mockingbird",
+  "imgSrc": "/assets/book/to kill a mocking bird.svg",
+  "author": "Harper Lee",
+  "description": "A profound exploration of racial injustice and moral growth in the American South through a child’s eyes.",
+  "isAvailable": false,
+  "__v": 0,
+  "borrowAt": {
+    "$date": "2025-04-23T11:10:14.043Z"
+  },
+  "borrowedBy": {
+    "$oid": "6808c051d7633fe78bca34f3"
+  },
+  "returnDate": {
+    "$date": "2025-04-30T11:10:14.043Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68065961ead167869101d8c3"
+  },
+  "title": "1984",
+  "imgSrc": "/assets/book/1984.svg",
+  "author": "George Orwell",
+  "description": "A chilling dystopia where Big Brother controls everything, and independent thought is a crime.",
+  "isAvailable": false,
+  "__v": 0,
+  "borrowAt": {
+    "$date": "2025-04-23T11:10:49.652Z"
+  },
+  "borrowedBy": {
+    "$oid": "6808b031eb02a17af7a86a61"
+  },
+  "returnDate": {
+    "$date": "2025-04-30T11:10:49.652Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "68065972ead167869101d8c5"
+  },
+  "title": "Pride and Prejudice",
+  "imgSrc": "/assets/book/pride and prejudice.svg",
+  "author": "Jane Austen",
+  "description": "A witty romantic drama about societal expectations, class, and misunderstandings.",
+  "isAvailable": true,
+  "__v": 0,
+  "borrowAt": null,
+  "borrowedBy": null,
+  "returnDate": null
+},
+{
+  "_id": {
+    "$oid": "6806597dead167869101d8c7"
+  },
+  "title": "Moby-Dick",
+  "imgSrc": "/assets/book/mobydick.svg",
+  "author": "Herman Melville",
+  "description": "Captain Ahab’s obsessive hunt for a legendary white whale becomes a deep, philosophical journey.",
+  "isAvailable": true,
+  "__v": 0,
+  "borrowAt": null,
+  "borrowedBy": null,
+  "returnDate": null
+},
+{
+  "_id": {
+    "$oid": "68065985ead167869101d8c9"
+  },
+  "title": "The Hobbit",
+  "imgSrc": "/assets/book/the hobbit.svg",
+  "author": "J.R.R. Tolkien",
+  "description": "A reluctant hobbit joins a group of dwarves on a grand quest to reclaim treasure guarded by a dragon.",
+  "isAvailable": true,
+  "__v": 0,
+  "borrowAt": null,
+  "borrowedBy": null,
+  "returnDate": null
+},
+{
+  "_id": {
+    "$oid": "68065995ead167869101d8cb"
+  },
+  "title": "The Catcher in the Rye",
+  "imgSrc": "/assets/book/the catcher in the rye.svg",
+  "author": "J.D. Salinger",
+  "description": "A rebellious teenager roams New York City, grappling with isolation and growing pains.",
+  "isAvailable": true,
+  "__v": 0,
+  "borrowAt": null,
+  "borrowedBy": null,
+  "returnDate": null
+},
+{
+  "_id": {
+    "$oid": "680659abead167869101d8cf"
+  },
+  "title": "Harry Potter and the Sorcerer's Stone",
+  "imgSrc": "/assets/book/sorcerer.svg",
+  "author": "J.K. Rowling",
+  "description": "An orphan discovers he is a wizard and enters a magical world full of adventure and wonder.",
+  "isAvailable": true,
+  "__v": 0,
+  "borrowAt": null,
+  "borrowedBy": null,
+  "returnDate": null
+},
+{
+  "_id": {
+    "$oid": "680659baead167869101d8d1"
+  },
+  "title": "The Lord of the Rings",
+  "imgSrc": "/assets/book/the lord of the rings.svg",
+  "author": "J.R.R. Tolkien",
+  "description": "A perilous journey to destroy a powerful ring that could doom the world if it falls into the wrong hands.",
+  "isAvailable": true,
+  "__v": 0,
+  "borrowAt": null,
+  "borrowedBy": null,
+  "returnDate": null
+},
+{
+  "_id": {
+    "$oid": "680659c6ead167869101d8d3"
+  },
+  "title": "Brave New World",
+  "imgSrc": "/assets/book/the brave new world.svg",
+  "author": "Aldous Huxley",
+  "description": "A futuristic society thrives on control and consumerism, where individuality is sacrificed for stability.",
+  "isAvailable": true,
+  "__v": 0,
+  "borrowAt": null,
+  "borrowedBy": null,
+  "returnDate": null
+},
+{
+  "_id": {
+    "$oid": "680659ceead167869101d8d5"
+  },
+  "title": "Fahrenheit 451",
+  "imgSrc": "/assets/book/fahrenheit.svg",
+  "author": "Ray Bradbury",
+  "description": "In a world where books are banned, a fireman begins to question the system he enforces.",
+  "isAvailable": true,
+  "__v": 0,
+  "borrowAt": null,
+  "borrowedBy": null,
+  "returnDate": null
+},
+{
+  "_id": {
+    "$oid": "680659d6ead167869101d8d7"
+  },
+  "title": "Jane Eyre",
+  "imgSrc": "/assets/book/jane eyre.svg",
+  "author": "Charlotte Brontë",
+  "description": "An orphaned girl grows into an independent woman while facing love, loss, and mystery.",
+  "isAvailable": true,
+  "__v": 0,
+  "borrowAt": null,
+  "borrowedBy": null,
+  "returnDate": null
+},
+{
+  "_id": {
+    "$oid": "680659deead167869101d8d9"
+  },
+  "title": "Wuthering Heights",
+  "imgSrc": "/assets/book/wuthering the heights.svg",
+  "author": "Emily Brontë",
+  "description": "A dark tale of passion and revenge set on the bleak Yorkshire moors.",
+  "isAvailable": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "680659edead167869101d8db"
+  },
+  "title": "The Chronicles of Narnia",
+  "imgSrc": "/assets/book/the chronicles.svg",
+  "author": "C.S. Lewis",
+  "description": "Children step through a wardrobe into a magical land ruled by good and evil forces.",
+  "isAvailable": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "680659f7ead167869101d8dd"
+  },
+  "title": "Frankenstein",
+  "imgSrc": "/assets/book/frankenstein.svg",
+  "author": "Mary Shelley",
+  "description": "A scientist creates a living being, only to face the terrifying consequences of playing God.",
+  "isAvailable": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68065a00ead167869101d8df"
+  },
+  "title": "Dracula",
+  "imgSrc": "/assets/book/dracula.svg",
+  "author": "Bram Stoker",
+  "description": "A vampire moves to England, spreading fear as a group of heroes races to stop him.",
+  "isAvailable": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68065a08ead167869101d8e1"
+  },
+  "title": "The Picture of Dorian Gray",
+  "imgSrc": "/assets/book/dorian gray.svg",
+  "author": "Oscar Wilde",
+  "description": "A man remains young while his portrait ages, reflecting his inner corruption.",
+  "isAvailable": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68065a10ead167869101d8e3"
+  },
+  "title": "Crime and Punishment",
+  "imgSrc": "/assets/book/crime and punishment.svg",
+  "author": "Fyodor Dostoevsky",
+  "description": "A psychological drama following a man’s descent into guilt after committing murder.",
+  "isAvailable": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68065a18ead167869101d8e5"
+  },
+  "title": "The Brothers Karamazov",
+  "imgSrc": "/assets/book/brothers.svg",
+  "author": "Fyodor Dostoevsky",
+  "description": "An exploration of faith, morality, and free will within a family torn by conflict and tragedy.",
+  "isAvailable": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68065a26ead167869101d8e7"
+  },
+  "title": "The Old Man and the Sea",
+  "imgSrc": "/assets/book/old man.svg",
+  "author": "Ernest Hemingway",
+  "description": "An aging fisherman’s struggle with a giant marlin becomes a story of perseverance and dignity.",
+  "isAvailable": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68065a30ead167869101d8e9"
+  },
+  "title": "The Grapes of Wrath",
+  "imgSrc": "/assets/book/grapes of wrath.svg",
+  "author": "John Steinbeck",
+  "description": "A family journeys west during the Great Depression, seeking survival and justice.",
+  "isAvailable": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68065a39ead167869101d8eb"
+  },
+  "title": "Of Mice and Men",
+  "imgSrc": "/assets/book/of mice.svg",
+  "author": "John Steinbeck",
+  "description": "Two drifters chase the American Dream but face heartbreaking realities.",
+  "isAvailable": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68065a42ead167869101d8ed"
+  },
+  "title": "Slaughterhouse-Five",
+  "imgSrc": "/assets/book/slaugherhouse-Five.svg",
+  "author": "Kurt Vonnegut",
+  "description": "A soldier becomes unstuck in time, offering a surreal look at war and fate.",
+  "isAvailable": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68065a4eead167869101d8ef"
+  },
+  "title": "The Alchemist",
+  "imgSrc": "/assets/book/alchemist.svg",
+  "author": "Paulo Coelho",
+  "description": "A young shepherd follows a prophetic dream in search of treasure and self-discovery.",
+  "isAvailable": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68065a5aead167869101d8f1"
+  },
+  "title": "Life of Pi",
+  "imgSrc": "/assets/book/life of pi.svg",
+  "author": "Yann Martel",
+  "description": "A boy survives a shipwreck and shares a lifeboat with a Bengal tiger in a tale of faith and survival.",
+  "isAvailable": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68065a64ead167869101d8f3"
+  },
+  "title": "The Kite Runner",
+  "imgSrc": "/assets/book/the kite runner.svg",
+  "author": "Khaled Hosseini",
+  "description": "A moving story of friendship, betrayal, and redemption set against the backdrop of Afghanistan.",
+  "isAvailable": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68065a6bead167869101d8f5"
+  },
+  "title": "A Thousand Splendid Suns",
+  "imgSrc": "/assets/book/splendid suns.svg",
+  "author": "Khaled Hosseini",
+  "description": "Two Afghan women form a deep bond amidst war, oppression, and heartbreak.",
+  "isAvailable": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68065a75ead167869101d8f7"
+  },
+  "title": "The Book Thief",
+  "imgSrc": "/assets/book/book thief.svg",
+  "author": "Markus Zusak",
+  "description": "A girl finds solace in books during Nazi Germany, with Death himself narrating her story.",
+  "isAvailable": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68065a7eead167869101d8f9"
+  },
+  "title": "The Road",
+  "imgSrc": "/assets/book/the road.svg",
+  "author": "Cormac McCarthy",
+  "description": "A father and son journey through a post-apocalyptic world, clinging to hope and love.",
+  "isAvailable": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68065a8aead167869101d8fb"
+  },
+  "title": "Norwegian Wood",
+  "imgSrc": "/assets/book/norweigan wood.svg",
+  "author": "Haruki Murakami",
+  "description": "A nostalgic and melancholic tale of love and loss in 1960s Tokyo.",
+  "isAvailable": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68065ad4ead167869101d8ff"
+  },
+  "title": "Kafka on the Shore",
+  "imgSrc": "/assets/book/kafka.svg",
+  "author": "Haruki Murakami",
+  "description": "A surreal blend of reality and fantasy, exploring fate, identity, and the meaning of life.",
+  "isAvailable": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68065c05ead167869101d905"
+  },
+  "title": "Brave New World",
+  "imgSrc": "/assets/book/the brave new world.svg",
+  "author": "Aldous Huxley",
+  "description": "A futuristic society thrives on control and consumerism, where individuality is sacrificed for stability.",
+  "isAvailable": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68065c43ead167869101d907"
+  },
+  "title": "Dracula",
+  "imgSrc": "/assets/book/dracula.svg",
+  "author": "Bram Stoker",
+  "description": "A vampire moves to England, spreading fear as a group of heroes races to stop him.",
+  "isAvailable": true,
+  "__v": 0
+}]
