@@ -3,12 +3,12 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 
 const links = [
-  { href: '/auth/login', name: 'Login' },
-  
-  { href: '/auth/register', name: 'Register' },
+
   { href: '/ourBooks', name: 'Books' },
   {href: '/borrowedBooks',name:"Borrowed Books"},
-  { href: '/editProfile', name: 'profile' },
+  { href: '/editProfile', name: 'Edit profile' },
+    { href: '/auth/login', name: 'Login' },
+  { href: '/auth/register', name: 'Register' },
 ];
 /*
 const letterAnim = {

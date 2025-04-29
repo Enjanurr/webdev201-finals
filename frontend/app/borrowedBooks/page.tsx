@@ -29,6 +29,7 @@ interface Book {
   author: string;
   description: string;
   isAvailable: boolean;
+  returnDate:string;
 }
 
 export default function Profile() {
@@ -176,6 +177,7 @@ export default function Profile() {
                         title={book.title}
                         author={book.author}
                         imgSrc={book.imgSrc}
+                        returnDate ={book.returnDate}
                       />
                     </HoverCardTrigger>
                     <HoverCardContent className="bg-white dark:bg-zinc-900 p-4 rounded-md shadow-lg max-w-xs text-sm text-zinc-800 dark:text-zinc-200">

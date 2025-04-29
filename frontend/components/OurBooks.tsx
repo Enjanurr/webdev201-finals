@@ -33,32 +33,45 @@ const OurBook: React.FC<MenuProps> = ({
         },
         body: JSON.stringify({ book_id }),
       });
-
+  
+      // Check for non-2xx HTTP responses
+      if (res.status === 400) {
+        const data = await res.json();
+        setMessage(data.message || 'Bad request. Please check the data you provided.');
+        return; // Early exit to prevent further execution
+      }
+  
+      if (res.status === 401 || res.status === 403) {
+        setMessage('You are not authorized. Redirecting to login...');
+        setTimeout(() => router.push('/auth/login'), 2000);
+        return;
+      }
+  
+      if (res.redirected || res.status === 307 || res.status === 302) {
+        setMessage('Session expired. Redirecting to login...');
+        setTimeout(() => router.push('/auth/login'), 2000);
+        return;
+      }
+  
       if (!res.ok) {
         const data = await res.json();
-        if (data.message === 'Token has expired') {
-          // Token expired, display the message and redirect to login
-          setMessage('Your session has expired. Redirecting to login...');
-
-          // Wait for 2 seconds before redirecting
-          setTimeout(() => {
-            router.push('/auth/login');
-          }, 2000); // Redirect after 2 seconds
-        } else {
-          throw new Error('Failed to borrow the book');
-        }
-      } else {
-        const data = await res.json();
-        console.log('Borrowed book:', data);
-        setIsBorrowed(true);
+        setMessage(data.message || 'Something went wrong');
+        return; // Early exit to prevent further execution
       }
+  
+      // If no errors, assume the request succeeded
+      const data = await res.json();
+      console.log('Borrowed book:', data);
+      setIsBorrowed(true);
+      setMessage(data.message || 'Book borrowed successfully.');
+  
     } catch (error) {
-      console.log('Failed to fetch the book', error);
-      setMessage(
-        'An error occurred while borrowing the book. Please try again.'
-      );
+      // This will only catch network or unexpected errors, not HTTP errors like 400, 401, etc.
+      console.log('Error:', error);
+      setMessage('An error occurred while borrowing the book. Please try again.');
     }
   };
+  
 
   return (
     <div className="flex flex-col items-center text-center gap-4 p-4 rounded-lg max-w-sm w-full">
@@ -73,7 +86,7 @@ const OurBook: React.FC<MenuProps> = ({
         />
       </div>
       <div className="flex flex-col flex-1 gap-2">
-        <div className="flex justify-between gap-4 items-baseline">
+        <div className="flex justify-center gap-4 items-center">
           <p className="uppercase font-primary font-semibold text-[22px] leading-none text-primary">
             {title}
           </p>
@@ -83,11 +96,23 @@ const OurBook: React.FC<MenuProps> = ({
         <div>
           {/* Show message with space above the button */}
           <div className="h-4">
-            {message && (
-              <p className="text-red-500 text-sm font-semibold">{message}</p>
-            )}
+          {message && (
+  <p
+    className={`text-sm font-semibold ${
+      message.toLowerCase().includes('error') ||
+      message.toLowerCase().includes('not') ||
+      message.toLowerCase().includes('unauthorized') ||
+      message.toLowerCase().includes('expired')
+        ? 'text-red-500'
+        : 'text-green-500'
+    }`}
+  >
+    {message}
+  </p>
+)}
+
           </div>
-          <button className="btn mt-4" onClick={borrow} disabled={isBorrowed}>
+          <button className="btn mt-4" onClick={borrow}>
             {isBorrowed ? 'Borrowed' : 'Borrow'}
           </button>
         </div>

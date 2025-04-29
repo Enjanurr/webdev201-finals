@@ -25,6 +25,7 @@ export const login = async (req: Request, res: Response): Promise<any> => {
       return res.status(401).json({ message: "Invalid password" });
     }
 
+  
     // Create JWT Token
     const payload = { _id: user._id, email: user.email };
     const token = jwt.sign(payload, process.env.TOKEN_STRING!, {
@@ -58,6 +59,10 @@ export const register = async (req: Request, res: Response): Promise<any> => {
     if (extinguisher) {
       return res.status(409).json({ message: "Email already registered" });
     }
+    if(password.length<5){
+      return res.status(401).json({message:"Password too short"});
+    }
+  
     const hashedPassword = await bcrypt.hash(password, 10);
     const joined = new Date();
     const newUser = await User.create({

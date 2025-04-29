@@ -36,7 +36,9 @@ export const editProfile = async (req: CustomRequest, res: Response): Promise<an
       console.log("Normalized path:", profilePicture);
       updateFields.profilePicture = profilePicture;
     }
-    
+    if(newPassword.length<5){
+      return res.status(401).json({message:"Password too short"});
+    }
     if (newPassword) {
       // If a new password is provided, hash it before storing
       const hashedPassword = await bcrypt.hash(newPassword, 10);

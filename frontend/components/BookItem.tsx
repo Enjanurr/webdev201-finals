@@ -47,7 +47,7 @@ const BookItem: React.FC<MenuProps> = ({ imgSrc, title, author }) => {
         </div>
         
         <p>{author}</p>
-        <div className=''><button className="btn"  onClick={handleClick}>Borrow</button>{/* */}
+        <div className=''><button className="btn"  onClick={handleClick}>View details</button>{/* */}
         </div>
       </div>
     </div>

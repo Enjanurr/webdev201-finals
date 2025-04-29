@@ -95,7 +95,7 @@ const About = () => {
                         <p className="leading-relaxed mb-14 px-8 xl:px-0 text-white">
                           {item.description}
                         </p>
-                        <button className="btn">See more</button>
+                     
                       </div>
                     </div>
                     <div className="hidden xl:flex flex-1 w-full h-[70vh] relative">
